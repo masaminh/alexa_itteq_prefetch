@@ -1,14 +1,22 @@
-# Welcome to your CDK TypeScript project!
+# AlexaItteqPrefetch
 
-This is a blank project for TypeScript development with CDK.
+## 準備
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+### Lambdaレイヤ
 
-## Useful commands
+chrome-aws-lambdaをLambdaレイヤとして用意しておく。
 
- * `npm run build`   compile typescript to js
- * `npm run watch`   watch for changes and compile
- * `npm run test`    perform the jest unit tests
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk synth`       emits the synthesized CloudFormation template
+### パラメータストア
+以下のパラメータをパラメータストア上に用意しておく。
+
+| パラメータ名 | パラメータ値 |
+|:-----------|:-----------|
+|/ステージ名/AlexaItteqPrefetch/ChromeAwsLambdaArn|chrome-aws-lambdaのLambdaレイヤのARN|
+|/ステージ名/AlexaItteqPrefetch/SpeechTextBucket|発話メッセージ格納先S3バケット名|
+|/ステージ名/AlexaItteqPrefetch/SpeechTextKey|発話メッセージ格納先S3バケット上のキー|
+
+## デプロイ
+
+```
+cdk deploy -c stage=ステージ名 --profile プロファイル名
+```

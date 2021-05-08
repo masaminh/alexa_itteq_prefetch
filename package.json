@@ -1,6 +1,7 @@
 {
   "name": "alexa_itteq_prefetch",
   "version": "0.1.0",
+  "license": "MIT",
   "bin": {
     "alexa_itteq_prefetch": "bin/alexa_itteq_prefetch.js"
   },
@@ -12,16 +13,35 @@
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.102.0",
+    "@types/aws-lambda": "^8.10.76",
+    "@types/bunyan": "^1.8.6",
     "@types/jest": "^26.0.10",
-    "@types/node": "10.17.27",
+    "@types/luxon": "^1.26.5",
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "@typescript-eslint/parser": "^4.22.1",
+    "aws-cdk": "1.102.0",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-import-resolver-node": "^0.3.4",
+    "eslint-plugin-import": "^2.22.1",
     "jest": "^26.4.2",
     "ts-jest": "^26.2.0",
-    "aws-cdk": "1.102.0",
     "ts-node": "^9.0.0",
     "typescript": "~3.9.7"
   },
   "dependencies": {
+    "@aws-cdk/aws-events": "^1.102.0",
+    "@aws-cdk/aws-events-targets": "^1.102.0",
+    "@aws-cdk/aws-lambda": "^1.102.0",
+    "@aws-cdk/aws-lambda-nodejs": "^1.102.0",
+    "@aws-cdk/aws-s3": "^1.102.0",
+    "@aws-cdk/aws-ssm": "^1.102.0",
     "@aws-cdk/core": "1.102.0",
+    "aws-sdk": "^2.903.0",
+    "bunyan": "^1.8.15",
+    "chrome-aws-lambda": "^8.0.2",
+    "luxon": "^1.26.0",
+    "puppeteer-core": "^8.0.0",
     "source-map-support": "^0.5.16"
   }
 }
