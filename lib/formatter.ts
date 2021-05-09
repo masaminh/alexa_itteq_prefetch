@@ -2,8 +2,8 @@ import * as luxon from 'luxon';
 import * as fetcher from './fetcher';
 
 export const format = (fetchResult: fetcher.ProgramInfo[], isotime: string): string => {
-  const timestamp = luxon.DateTime.fromISO(isotime);
-  const date = timestamp.toFormat('M/D');
+  const timestamp = luxon.DateTime.fromISO(isotime).setZone('Asia/Tokyo');
+  const date = timestamp.toFormat('M/d');
   const filtered = fetchResult.filter((x) => x.date === date);
 
   if (filtered.length > 0) {
