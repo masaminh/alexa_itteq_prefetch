@@ -24,7 +24,7 @@ export const fetchProgramInfo = async (): Promise<ProgramInfo[]> => {
   try {
     const page = await browser.newPage();
     await page.goto(Url);
-    await page.waitForSelector('.programListItem');
+    await page.waitForSelector('.programListItem, .searchError');
     return await page.$$eval('.programListItem', (list) => list.map((e): ProgramInfo => {
       const getTextContent = (x: Element, selector: string): string => x.querySelector(selector)?.textContent ?? ''
 
