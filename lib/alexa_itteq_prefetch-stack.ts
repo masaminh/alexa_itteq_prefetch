@@ -12,9 +12,10 @@ export class AlexaItteqPrefetchStack extends cdk.Stack {
 
     const appName = 'AlexaItteqPrefetch';
     const stage = this.node.tryGetContext('stage');
-    const getParameter = (parameterName: string): string => ssm.StringParameter.valueFromLookup(
-      this, `/${stage}/${appName}/${parameterName}`,
-    );
+    const getParameter = (parameterName: string): string => {
+      const parameterPath = `/${stage}/${appName}/${parameterName}`;
+      return ssm.StringParameter.valueForStringParameter(this, parameterPath);
+    }
     const chromeAwsLambdaArn = getParameter('ChromeAwsLambdaArn');
     const speechTextBucket = getParameter('SpeechTextBucket');
     const speechTextKey = getParameter('SpeechTextKey');
