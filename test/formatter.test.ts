@@ -8,7 +8,7 @@ describe('formatter', (): void => {
   };
 
   beforeEach(() => {
-    luxon.Settings.defaultZoneName = 'utc';
+    luxon.Settings.defaultZone = 'utc';
   });
 
   test.each`
