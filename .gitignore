@@ -7,5 +7,5 @@ node_modules
 .cdk.staging
 cdk.out
 
-/cdk.context.json
-/coverage
+/cdk/cdk.context.json
+/cdk/coverage

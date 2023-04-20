@@ -21,8 +21,10 @@ jobs:
           node-version: 16
       - name: Install Dependencies
         run: npm ci
+        working-directory: cdk
       - name: Test
         run: npm t
+        working-directory: cdk
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
@@ -38,3 +40,4 @@ jobs:
       - name: Deploy
         if: startsWith(github.ref, 'refs/heads/main')
         run: npm run cdk -- deploy -c stage=Prod --require-approval never
+        working-directory: cdk
