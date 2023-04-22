@@ -1,4 +1,4 @@
-import Chromium from 'chrome-aws-lambda';
+import puppeteer from 'puppeteer';
 
 /* global Element */
 
@@ -13,12 +13,17 @@ export interface ProgramInfo {
 const Url = 'https://tv.yahoo.co.jp/search/?q=%E3%82%A4%E3%83%83%E3%83%86Q&a=10';
 
 export const fetchProgramInfo = async (): Promise<ProgramInfo[]> => {
-  const browser = await Chromium.puppeteer.launch({
-    args: Chromium.args,
-    defaultViewport: Chromium.defaultViewport,
-    executablePath: await Chromium.executablePath,
-    headless: Chromium.headless,
-    ignoreHTTPSErrors: true,
+  const browser = await puppeteer.launch({
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '-–disable-dev-shm-usage',
+      '--disable-gpu',
+      '--no-first-run',
+      '--no-zygote',
+      '--single-process',
+    ],
+    headless: true,
   });
 
   try {

@@ -9,3 +9,6 @@ cdk.out
 
 /cdk/cdk.context.json
 /cdk/coverage
+/lambda/.cache
+/lambda/dist
+/lambda/coverage
