@@ -1,6 +1,6 @@
+import * as path from 'node:path';
 import * as cdk from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
-import * as lambdaNodejs from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as ssm from 'aws-cdk-lib/aws-ssm';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as events from 'aws-cdk-lib/aws-events';
@@ -17,21 +17,16 @@ export class AlexaItteqPrefetchStack extends cdk.Stack {
       const parameterPath = `/${stage}/${appName}/${parameterName}`;
       return ssm.StringParameter.valueForStringParameter(this, parameterPath);
     }
-    const chromeAwsLambdaArn = getParameter('ChromeAwsLambdaArn');
+
     const speechTextBucket = getParameter('SpeechTextBucket');
     const speechTextKey = getParameter('SpeechTextKey');
 
-    const func = new lambdaNodejs.NodejsFunction(this, 'func', {
+    const func = new lambda.DockerImageFunction(this, 'func', {
+      code: lambda.DockerImageCode.fromImageAsset(path.join(__dirname, '../../lambda')),
       memorySize: 512,
       timeout: cdk.Duration.seconds(60),
       environment: { SPEECH_TEXT_BUCKET: speechTextBucket, SPEECH_TEXT_KEY: speechTextKey },
       tracing: lambda.Tracing.ACTIVE,
-      layers: [
-        lambda.LayerVersion.fromLayerVersionArn(this, 'layerVersion', chromeAwsLambdaArn),
-      ],
-      bundling: {
-        externalModules: ['aws-sdk', 'puppeteer-core', 'chrome-aws-lambda'],
-      },
     });
 
     new events.Rule(this, 'rule', {

@@ -19,12 +19,15 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Install Dependencies
+      - name: Install Dependencies (./cdk)
         run: npm ci
         working-directory: cdk
+      - name: Install Dependencies (./lambda)
+        run: npm ci
+        working-directory: lambda
       - name: Test
         run: npm t
-        working-directory: cdk
+        working-directory: lambda
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:

@@ -1,5 +1,5 @@
 import * as luxon from 'luxon';
-import * as formatter from '../lib/formatter';
+import * as formatter from './formatter';
 
 describe('formatter', (): void => {
   type TestArgs= {
