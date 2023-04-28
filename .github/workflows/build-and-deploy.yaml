@@ -25,7 +25,10 @@ jobs:
       - name: Install Dependencies (./lambda)
         run: npm ci
         working-directory: lambda
-      - name: Test
+      - name: Test (./cdk)
+        run: npm t
+        working-directory: cdk
+      - name: Test (./lambda)
         run: npm t
         working-directory: lambda
       - name: SonarCloud Scan

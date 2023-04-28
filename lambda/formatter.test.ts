@@ -25,5 +25,10 @@ describe('formatter', (): void => {
       }], eventTime);
       expect(actualMessage).toBe(expectedMessage);
     },
-  )
+  );
+
+  test('番組なし', () => {
+    const actualMessage = formatter.format([], '2021-04-30T14:59:59Z');
+    expect(actualMessage).toBe('今日はイッテQはありません。');
+  });
 })
